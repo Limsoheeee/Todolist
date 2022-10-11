@@ -1,54 +1,64 @@
-import React  from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import {delCard, changeCard} from "../redux/modules/todo";
+import { delCard, changeCard } from "../redux/modules/todo";
 
-const ToDo = ({item}) => {
-    const dispatch = useDispatch();
-    const{title, content, isDone, id} =item;
-    const onClickDel = (id) => {
-        dispatch(delCard(id))
-    };
-    const onClickChange = (id) => {
-        dispatch(changeCard(id));
-      };
+const ToDo = ({ item }) => {
+  const dispatch = useDispatch();
+  const { title, content, isDone, id } = item;
 
-    return (
-        <TodoCard>
-            <div>
+  const onClickDel = (id) => {
+    dispatch(delCard(id));
+  };
+
+  const onClickChange = (id) => {
+    dispatch(changeCard(id));
+  };
+
+  return (
+    <TodoCard>
+      <div>
         <h4>{title}</h4>
-        <p>{content}</p>
-        </div>
-        <div>
-        <TodoBtn onClick={()=>onClickChange(id)}>{isDone ? "완료" : "취소"}</TodoBtn>
-        <TodoBtn onClick = {()=>onClickDel(id)}>삭제</TodoBtn>
-        </div>
+        <Content>{content}</Content>
+      </div>
+      <ButtonWrap>
+        <TodoBtn onClick={() => onClickChange(id)}>
+          {isDone ? "완료" : "취소"}
+        </TodoBtn>
+        <TodoBtn onClick={() => onClickDel(id)}>삭제</TodoBtn>
+      </ButtonWrap>
     </TodoCard>
-    );
-    
+  );
 };
 
-const TodoCard = styled.div` 
-display: flex;
- width: 100px;
- height : 150px ;
-border: 2px solid green;
-background-color:transparent;
-color: black;
-border-radius:15px;
-`; 
+const Content = styled.p`
+  word-break: break-all;
+`;
 
-const TodoBtn = styled.button` 
-display: flex;
-flex-wrap: wrap;
- width: 30px;
- height : 20px ;
-border: 2px solid green;
-background-color:transparent;
-color: black;
-border-radius:5px;
-margin-left:10px ;
-margin-top: 70px;
-`; 
+const TodoCard = styled.li`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  padding: 20px;
+  border: 2px solid green;
+  background-color: transparent;
+  color: black;
+  border-radius: 15px;
+`;
+
+const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+`;
+
+const TodoBtn = styled.button`
+  flex: 1;
+  border: 2px solid green;
+  background-color: transparent;
+  color: black;
+  border-radius: 5px;
+`;
 
 export default ToDo;
