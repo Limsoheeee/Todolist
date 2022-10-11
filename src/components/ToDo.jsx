@@ -19,9 +19,10 @@ const ToDo = ({item}) => {
         <h4>{title}</h4>
         <p>{content}</p>
         </div>
-        <button onClick={()=>onClickChange(id)}>{isDone ? "완료" : "취소"}</button>
-        <button onClick = {()=>onClickDel(id)}>삭제</button>
-        
+        <div>
+        <TodoBtn onClick={()=>onClickChange(id)}>{isDone ? "완료" : "취소"}</TodoBtn>
+        <TodoBtn onClick = {()=>onClickDel(id)}>삭제</TodoBtn>
+        </div>
     </TodoCard>
     );
     
@@ -29,15 +30,25 @@ const ToDo = ({item}) => {
 
 const TodoCard = styled.div` 
 display: flex;
-flex-wrap: wrap;
  width: 100px;
  height : 150px ;
 border: 2px solid green;
 background-color:transparent;
 color: black;
+border-radius:15px;
+`; 
+
+const TodoBtn = styled.button` 
+display: flex;
+flex-wrap: wrap;
+ width: 30px;
+ height : 20px ;
+border: 2px solid green;
+background-color:transparent;
+color: black;
 border-radius:5px;
 margin-left:10px ;
-text-align: center;
+margin-top: 70px;
 `; 
 
 export default ToDo;
