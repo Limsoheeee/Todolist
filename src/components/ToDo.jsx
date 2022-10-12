@@ -9,16 +9,19 @@ const ToDo = ({ item }) => {
   const navigate = useNavigate();
   const { title, content, isDone, id } = item;
 
+  const todoList = useSelector((state)=> state.todo.todoList)
+
   const onClickDel = (id) => {
     dispatch(delCard(id));
   };
 
-  // const onClickDetail = (id) => {    
-  //   navigate(`/detail/${toDoList.id}`);
-  //   // const detail = { ...toDoList.id };
-  //   // dispatch(gettodoid(detail));
-  //   // console.log(detail)  
-  // };
+  const onClickDetail = (id) => {    
+    dispatch(gettodoid(id));
+    const findCard = todoList.filter((card)=>{
+      return card.id === id
+    })
+    navigate(`/detail/${id}`, {state: findCard});
+  };
 
   const onClickChange = (id) => {
     dispatch(changeCard(id));
@@ -27,7 +30,7 @@ const ToDo = ({ item }) => {
   return (
     <TodoCard>
       <div>
-        <span onClick={()=>{navigate(`/detail/${id}`)}}>상세보기</span>
+        <DeTail onClick={()=>onClickDetail(item.id)}>상세보기</DeTail>
         <h4>{title}</h4>
         <Content>{content}</Content>
       </div>
@@ -43,6 +46,10 @@ const ToDo = ({ item }) => {
 
 const Content = styled.p`
   word-break: break-all;
+`;
+
+const DeTail = styled.span`
+  cursor: pointer;;
 `;
 
 const TodoCard = styled.li`

@@ -1,20 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Detail() {
   const navigate = useNavigate();
-  const toDoList = useSelector((state) => state.todo.todoList);
-  const { id } = useParams();
-  const detailpage = toDoList.find((todo)=>todo.id === Number(id));
-
+  const currentTodo = useSelector((state)=> state.todo.currentTodo);
+  // const { id } = useParams();
+  const param = useParams()
+  const location = useLocation()
+  console.log(location)
+  // const detailpage = toDoList.find((todo)=>todo.id === Number(id));
+const {id, title, content} = currentTodo
   return (
     <StBox>
        <p>ID:{id}</p>   
-      <h2>{detailpage.title}</h2>
-      <h3>{detailpage.content}</h3>
+      <h2>{title}</h2>
+      <h3>{content}</h3>
       <button onClick={()=>{navigate(-1)}}>이전페이지</button>
     </StBox>
   );

@@ -58,14 +58,13 @@ const todo = (state = initialState, action) => {
         ),
       };
       return changeCard;
-      // case "GETTODO_ID":
-      //   const getTodoId = {
-      //     ...state,
-      //     todoList: state.todoList.find((item) =>
-      //       item.id === action.payload          
-      //     ),         
-      //   };
-      //   return getTodoId;          
+      case "GETTODO_ID":
+        return {
+          ...state,
+          currentTodo: state.todoList.find((item) =>
+             item.id === action.payload          
+          ),         
+        };        
         default:
       return state;
   }
