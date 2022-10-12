@@ -1,15 +1,24 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { delCard, changeCard } from "../redux/modules/todo";
+import { delCard, changeCard, gettodoid } from "../redux/modules/todo";
+import { useNavigate } from "react-router-dom";
 
 const ToDo = ({ item }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { title, content, isDone, id } = item;
 
   const onClickDel = (id) => {
     dispatch(delCard(id));
   };
+
+  // const onClickDetail = (id) => {    
+  //   navigate(`/detail/${toDoList.id}`);
+  //   // const detail = { ...toDoList.id };
+  //   // dispatch(gettodoid(detail));
+  //   // console.log(detail)  
+  // };
 
   const onClickChange = (id) => {
     dispatch(changeCard(id));
@@ -18,6 +27,7 @@ const ToDo = ({ item }) => {
   return (
     <TodoCard>
       <div>
+        <span onClick={()=>{navigate(`/detail/${id}`)}}>상세보기</span>
         <h4>{title}</h4>
         <Content>{content}</Content>
       </div>
@@ -59,6 +69,5 @@ const TodoBtn = styled.button`
   color: black;
   border-radius: 5px;
 `;
-
 
 export default ToDo;

@@ -3,12 +3,14 @@ const initialState = {
     { id: 0, title: "isnotdone", content: "안녕", isDone: false },
     { id: 1, title: "isdone", content: "하세요", isDone: true },
   ],
+  currentTodo:{},
 };
 
 //액션밸류
 const ADD_CARD = "ADD_CARD";
 const DEL_CARD = "DEL_CARD";
 const CHANGE_CARD = "CHANGE_CARD";
+const GETTODO_ID = "GETTODO_ID";
 // 엑션 creator
 export const addCard = (payload) => {
   return {
@@ -30,6 +32,14 @@ export const changeCard = (payload) => {
     payload,
   };
 };
+
+export const gettodoid = (payload) => {
+  return {
+    type: GETTODO_ID,
+    payload,
+  };
+};
+
 // 리듀서
 const todo = (state = initialState, action) => {
   switch (action.type) {
@@ -48,7 +58,15 @@ const todo = (state = initialState, action) => {
         ),
       };
       return changeCard;
-    default:
+      // case "GETTODO_ID":
+      //   const getTodoId = {
+      //     ...state,
+      //     todoList: state.todoList.find((item) =>
+      //       item.id === action.payload          
+      //     ),         
+      //   };
+      //   return getTodoId;          
+        default:
       return state;
   }
 };
