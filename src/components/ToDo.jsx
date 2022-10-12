@@ -23,7 +23,7 @@ const ToDo = ({ item }) => {
       </div>
       <ButtonWrap>
         <TodoBtn onClick={() => onClickChange(id)}>
-          {isDone ? "완료" : "취소"}
+          {isDone ? "취소" : "완료"}
         </TodoBtn>
         <TodoBtn onClick={() => onClickDel(id)}>삭제</TodoBtn>
       </ButtonWrap>
@@ -39,7 +39,6 @@ const TodoCard = styled.li`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-
   padding: 20px;
   border: 2px solid green;
   background-color: transparent;
@@ -60,5 +59,6 @@ const TodoBtn = styled.button`
   color: black;
   border-radius: 5px;
 `;
+
 
 export default ToDo;

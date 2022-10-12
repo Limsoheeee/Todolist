@@ -12,7 +12,7 @@ function App() {
   const [content, setContent] = useState("");
 
   const toDoList = useSelector((state) => state.todo.todoList);
-  console.log(toDoList);
+
 
   const dispatch = useDispatch();
 
@@ -24,14 +24,16 @@ function App() {
       setContent(value);
     }
   };
-
+ 
   const onClickHandler = () => {
-    const card = { title, content, id: uuidv4(), isDone: false };
+    const card = { title, content, isDone: false, id: toDoList[toDoList.length-1]?.id + 1 || 0 };
+    console.log(card);
     dispatch(addCard(card)); //카드내용을 페이로드해줌
     setTitle("");
     setContent("");
+   
   };
-
+ 
   return (
     <Container>
       <Header />
