@@ -21,7 +21,11 @@ function Home() {
   }; 
   const onClickHandler = () => {
     const card = { title, content, isDone: false, id: toDoList[toDoList.length-1]?.id + 1 || 0 };
+    if(card.title && card.content !== ""){
     dispatch(addCard(card))
+    }else{
+      return null
+    }
       setTitle("");
     setContent("");   
   };
