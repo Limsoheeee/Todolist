@@ -8,13 +8,14 @@ function Detail() {
   const navigate = useNavigate();
   const currentTodo = useSelector((state)=> state.todo.currentTodo);
   // const { id } = useParams();
-  const param = useParams()
-  const location = useLocation()
+  const param = useParams();
+  const location = useLocation();//객체를 리턴한다. url에 관한 객체를 나타낸다.
   console.log(location)
   // const detailpage = toDoList.find((todo)=>todo.id === Number(id));
-const {id, title, content} = currentTodo
+const {id, title, content,isDone} = currentTodo
   return (
     <StBox>
+      {/* <span isDone={isDone}></span> */}
        <p>ID:{id}</p>   
       <h2>{title}</h2>
       <h3>{content}</h3>

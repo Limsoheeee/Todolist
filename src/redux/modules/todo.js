@@ -50,6 +50,7 @@ const todo = (state = initialState, action) => {
         return item.id !== action.payload;
       });
       return { ...state, todoList: filterDelCard };
+      //필터로 일치하지않은 애들만 배열을 만든다.
     case "CHANGE_CARD":
       const changeCard = {
         ...state,

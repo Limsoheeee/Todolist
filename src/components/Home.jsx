@@ -11,6 +11,7 @@ function Home() {
   const [content, setContent] = useState("");
   const toDoList = useSelector((state) => state.todo.todoList);
   const dispatch = useDispatch();
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     if (name === "title") {
@@ -18,7 +19,8 @@ function Home() {
     } else if (name === "content") {
       setContent(value);
     }
-  }; 
+  };
+   //밸류값설정확인! 배열형식 
   const onClickHandler = () => {
     const card = { title, content, isDone: false, id: toDoList[toDoList.length-1]?.id + 1 || 0 };
     if(card.title && card.content !== ""){
@@ -29,6 +31,7 @@ function Home() {
       setTitle("");
     setContent("");   
   };
+  //
  
   return (
     <>

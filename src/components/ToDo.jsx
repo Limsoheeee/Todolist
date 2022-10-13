@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { delCard, changeCard, gettodoid } from "../redux/modules/todo";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const ToDo = ({ item }) => {
+  console.log(item.id)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { title, content, isDone, id } = item;
@@ -21,18 +22,23 @@ const ToDo = ({ item }) => {
       return card.id === id
     })
     navigate(`/detail/${id}`, {state: findCard});
+
+    // navigate(`/detail/${id}`)
   };
 
   const onClickChange = (id) => {
     dispatch(changeCard(id));
   };
+  //id를 기준으로 이벤트를 발생시킨다. 
+
 
   return (
     <TodoCard>
       <div>
-        <DeTail onClick={()=>onClickDetail(item.id)}>상세보기</DeTail>
+        <DeTail onClick={()=>onClickDetail(id)}>상세보기</DeTail>
         <h4>{title}</h4>
         <Content>{content}</Content>
+        {/* <Link to={`/detail/${item.id}`}>디테일 페이지 바로가기</Link> */}
       </div>
       <ButtonWrap>
         <TodoBtn onClick={() => onClickChange(id)}>
@@ -40,6 +46,8 @@ const ToDo = ({ item }) => {
         </TodoBtn>
         <TodoBtn onClick={() => onClickDel(id)}>삭제</TodoBtn>
       </ButtonWrap>
+    
+      
     </TodoCard>
   );
 };
